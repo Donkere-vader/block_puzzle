@@ -1,4 +1,7 @@
-use crate::{validators::{valid_pos, Valid}, Offset, Position, World, COLORS, WORLD_HEIGHT, WORLD_WIDTH};
+use crate::{
+    validators::{valid_pos, Valid},
+    Offset, Position, World, COLORS, WORLD_HEIGHT, WORLD_WIDTH,
+};
 use colored::Colorize;
 
 fn border_on_offset(world: &World, pos: Position, same_as: &usize, offset: Offset) -> bool {

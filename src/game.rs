@@ -1,6 +1,6 @@
 use crate::{block::BlockGeometry, Inventory, Placement, Position, World};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Game {
     pub world: World,
     pub placements: Vec<Placement>,
@@ -39,6 +39,16 @@ impl Game {
             placement.block.get_block_id(),
         );
 
+        let block_idx = self
+            .inventory
+            .iter()
+            .enumerate()
+            .find(|(_idx, block)| **block == placement.block)
+            .expect("Block was not in inventory, but placement of block was attempted")
+            .0;
+
+        self.inventory.remove(block_idx);
+
         self.placements.push(placement);
     }
 
@@ -50,6 +60,7 @@ impl Game {
         let geometry = geometries.get(placement.rotation).unwrap();
 
         self.set_values(&placement.anchor_pos, geometry, 0);
+        self.inventory.push(placement.block.clone());
 
         Some(placement)
     }
