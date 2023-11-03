@@ -81,11 +81,12 @@ pub fn draw_world(world: &World) {
             let color = color_map[y / 3][x / 4];
             print!(
                 "{}",
-                format!("{value}")
+                value
+                    .to_string()
                     .on_truecolor(color.0, color.1, color.2)
                     .truecolor(0, 0, 0)
             );
         }
-        println!("")
+        println!();
     }
 }

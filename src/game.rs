@@ -60,7 +60,7 @@ impl Game {
         let geometry = geometries.get(placement.rotation).unwrap();
 
         self.set_values(&placement.anchor_pos, geometry, 0);
-        self.inventory.push(placement.block.clone());
+        self.inventory.push(placement.block);
 
         Some(placement)
     }
